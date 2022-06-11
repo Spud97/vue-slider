@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="thumbs">
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                    <div v-for="slide in slides" v-if="isActive(slide) " class="thumb active">
+                    <div @click="clickedArrow(-1)" class="prev"></div>
+                    <div @click="clickedArrow(+1)" class="next"></div>
+                    <div @click="clickedSlide()" v-for="slide in slides" v-if="isActive(slide) " class="thumb active">
                         <img :src="slide.image" :alt="slide.title"/>
                     </div>
                     <div v-else class="thumb">
@@ -42,7 +42,6 @@
         </div>
 
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>

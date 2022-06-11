@@ -30,14 +30,23 @@ const appVue = new Vue({
   el: ".slider-wrapper",
 
   data: {
-    slides,
-    currentImage: slides[0]
+    slides: slides,
+    currentImage: slides[0],
   },
   methods: {
-    isActive:function (slide) {
-      if (slide===this.currentImage) {
-        return true
+    isActive: function (slide) {
+      return slide === this.currentImage;
+    },
+
+    clickedArrow: function (direction) {
+      let index = slides.indexOf(this.currentImage);
+      if (slides[index + direction] !== undefined) {
+        this.currentImage = slides[index + direction];
       }
+    },
+
+    clickedSlide: function () {
+      this.currentImage = slides
     }
-  }
+  },
 });
