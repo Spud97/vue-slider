@@ -32,21 +32,46 @@ const appVue = new Vue({
   data: {
     slides: slides,
     currentImage: slides[0],
+    time: null,
   },
+
   methods: {
     isActive: function (slide) {
       return slide === this.currentImage;
     },
 
     clickedArrow: function (direction) {
-      let index = slides.indexOf(this.currentImage);
-      if (slides[index + direction] !== undefined) {
-        this.currentImage = slides[index + direction];
+      let index = this.slides.indexOf(this.currentImage);
+      if (this.slides[index + direction] !== undefined) {
+        this.currentImage = this.slides[index + direction];
       }
     },
 
     clickedSlide: function (slide) {
-      this.currentImage = slide
-    }
+      this.currentImage = slide;
+    },
+
+    cycleSlides: function () {
+      let index = this.slides.indexOf(this.currentImage);
+      if (this.slides[index + 1] !== undefined) {
+        this.currentImage = this.slides[index + 1];
+      } else {
+        this.currentImage = this.slides[0];
+      }
+    },
+
+    stopAutoplay: function () {
+      clearInterval(this.time);
+    },
+
+    startAutoplay: function () {
+      this.time = setInterval(() => {
+        this.cycleSlides();
+      }, 3000);
+    },
+  },
+
+  mounted() {
+    this.startAutoplay()
   },
 });
