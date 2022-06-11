@@ -45,8 +45,8 @@ const appVue = new Vue({
       }
     },
 
-    clickedSlide: function () {
-      this.currentImage = slides
+    clickedSlide: function (slide) {
+      this.currentImage = slide
     }
   },
 });
